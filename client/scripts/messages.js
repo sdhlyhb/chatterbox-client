@@ -5,8 +5,8 @@
 var Messages = {
 
   // TODO: Define how you want to store your messages.
-  var id= 0; id++;
-  _data: {id1: message1, },
+
+  _data: undefined,
 
   // TODO: Define methods which allow you to retrieve from,
   // add to, and generally interact with the messages.

@@ -16,6 +16,8 @@ var MessagesView = {
 
   renderMessage: function(message) {
     // TODO: Render a single message.
+    this.$chats.append(MessageView.render(message));
+
   },
 
   handleClick: function(event) {
