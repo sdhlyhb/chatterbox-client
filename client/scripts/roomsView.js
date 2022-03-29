@@ -9,6 +9,7 @@ var RoomsView = {
   initialize: function() {
     // TODO: Perform any work which needs to be done
     // when this view loads.
+    this.handleClick(event);
   },
 
   render: function() {
@@ -17,6 +18,7 @@ var RoomsView = {
 
   renderRoom: function(roomname) {
     // TODO: Render out a single room.
+    this.$select.append(`<option>${roomname}</option>`);
   },
 
   handleChange: function(event) {
@@ -25,6 +27,13 @@ var RoomsView = {
 
   handleClick: function(event) {
     // TODO: Handle the user clicking the "Add Room" button.
+    //grabbed the addRoom button
+    this.$button.on('click', function() {
+      var roomname = prompt('Enter Room Name');
+      if (roomname.length > 0) {
+        Rooms.addRoom(roomname);
+      }
+    });
   }
 
 };
