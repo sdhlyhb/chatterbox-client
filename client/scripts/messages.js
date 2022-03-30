@@ -12,7 +12,25 @@ var Messages = {
 
   // TODO: Define methods which allow you to retrieve from,
   // add to, and generally interact with the messages.
-  // addMessage: function (message) {
-
-  // }
+  addMessage: function (message) {
+    this._data[this.id] = message;
+    this.id++;
+    MessagesView.renderMessage(message);
+  },
+  filterMessageByRoomName: function (roomname) {
+    //get values in array
+    var messages = Object.values(this._data);
+    //filter array by keyword
+    messages.filter(function (message) {
+      return message.roomname === roomname;
+    });
+  },
+  filterMessageByUsername: function (username) {
+    //get values in array
+    var messages = Object.values(this._data);
+    //filter array by keyword
+    messages.filter(function (message) {
+      return message.username === keyword;
+    });
+  }
 };

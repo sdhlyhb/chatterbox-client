@@ -10,10 +10,16 @@ var RoomsView = {
     // TODO: Perform any work which needs to be done
     // when this view loads.
     this.handleClick(event);
+    this.render();
   },
 
   render: function() {
     // TODO: Render out the list of rooms.
+    var rooms = Object.keys(Rooms._data);
+    rooms.forEach((room) => {
+      this.renderRoom(room);
+    });
+
   },
 
   renderRoom: function(roomname) {
@@ -31,8 +37,12 @@ var RoomsView = {
     this.$button.on('click', function() {
       var roomname = prompt('Enter Room Name');
       if (roomname.length > 0) {
-        Rooms.addRoom(roomname);
+        Rooms.add(roomname);
+
+      } else {
+        Rooms.add(roomname = 'null name');
       }
+      RoomsView.$select.val(roomname);
     });
   }
 

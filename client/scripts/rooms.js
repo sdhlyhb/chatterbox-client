@@ -9,7 +9,7 @@ var Rooms = {
 
   // TODO: Define methods which allow you to add rooms, update the list,
   // mark a room as selected, etc.
-  addRoom: function (roomname) {
+  add: function (roomname) {
     if (!this._data[roomname]) {
       this._data[roomname] = true;
       RoomsView.renderRoom(roomname);

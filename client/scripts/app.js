@@ -10,6 +10,7 @@ var App = {
 
   initialize: function() {
     App.username = window.location.search.substr(10);
+    //console.log(App.username);
 
     FormView.initialize();
     RoomsView.initialize();
@@ -18,6 +19,9 @@ var App = {
     // Fetch initial batch of messages
     App.startSpinner();
     App.fetch(App.stopSpinner());
+    $('.refresh-button').on('click', (e)=>{
+      App.fetch();
+    });
 
     // TODO: Make sure the app loads data from the API
     // continually, instead of just once at the start.
@@ -28,8 +32,11 @@ var App = {
       // examine the response from the server request:
       console.log(data);
       data.forEach((message) => {
-        MessagesView.renderMessage(message);
+        //push all messages to our data object
+        Messages.addMessage(message);
+        //console.log(Messages._data);
       });
+      MessagesView.render();
       // TODO: Use the data to update Messages and Rooms
       // and re-render the corresponding views.
     });
