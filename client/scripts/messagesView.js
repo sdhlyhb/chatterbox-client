@@ -11,19 +11,21 @@ var MessagesView = {
     this.handleClick();
   },
 
-  render: function() {
+  render: function(messages) {
     // TODO: Render _all_ the messages.
-    var messages = Object.values(Messages._data);
+    this.$chats.html('');
+    var messages = messages || Object.values(Messages._data);
     messages.forEach((message) => {
       this.renderMessage(message);
     });
-    this.handleClick(event);
+
+    //this or MessagesView???
+    MessagesView.handleClick(event);
   },
 
   renderMessage: function(message) {
     // TODO: Render a single message.
     this.$chats.append(MessageView.render(message));
-    //this.handleClick(event);//!!!!will cause problems if click some name other than oldest post.
 
   },
 

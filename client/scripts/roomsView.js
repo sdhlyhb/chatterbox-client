@@ -9,28 +9,42 @@ var RoomsView = {
   initialize: function() {
     // TODO: Perform any work which needs to be done
     // when this view loads.
+    this.render(); //shows default room
     this.handleClick(event);
-    this.render();
+    this.handleChange(event);
   },
 
   render: function() {
-    // TODO: Render out the list of rooms.
+    //gets array of rooms
     var rooms = Object.keys(Rooms._data);
+    //goses through each room, renders
     rooms.forEach((room) => {
       this.renderRoom(room);
     });
-
   },
 
   renderRoom: function(roomname) {
     // TODO: Render out a single room.
     this.$select.append(`<option>${roomname}</option>`);
-
   },
+
+  displayCurrentRoom: function () {
+    var currentRoom = RoomsView.$select.val();
+    //get current messages for selected room
+    var filteredMessages = Messages.filterMessageByRoomName(currentRoom);
+    //clear chat html
+    MessagesView.$chats.html('');
+    //render room's messages to chats
+    MessagesView.render(fiteredMessages);
+  },
+
 
   handleChange: function(event) {
     // TODO: Handle a user selecting a different room.
-
+    this.$select.on('change', function () {
+      //display current room when selected
+      RoomsView.displayCurrentRoom();
+    });
     //render feed to only include messages in specific room
   },
 
@@ -39,13 +53,17 @@ var RoomsView = {
     //grabbed the addRoom button
     this.$button.on('click', function() {
       var roomname = prompt('Enter Room Name');
+      //if a roomname is given
       if (roomname.length > 0) {
         Rooms.add(roomname);
-
       } else {
-        Rooms.add(roomname = 'null name');
+        //if no input, shows default room
+        Rooms.add(roomname = 'showAll');
       }
+      //will change roomname selected roomname
       RoomsView.$select.val(roomname);
+
+      setTimeout(() => { RoomsView.displayCurrentRoom(); }, 100);
     });
   }
 

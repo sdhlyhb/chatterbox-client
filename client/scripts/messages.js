@@ -21,16 +21,12 @@ var Messages = {
     //get values in array
     var messages = Object.values(this._data);
     //filter array by keyword
-    messages.filter(function (message) {
-      return message.roomname === roomname;
-    });
-    if (roomname === 'show') {
+    if (roomname === 'showAll') {
       return messages;
     } else {
-      var result = _.filter(messages, function (message) {
+      messages.filter(function (message) {
         return message['roomname'] === roomname;
       });
-      return result;
     }
   },
   filterMessageByUsername: function (username) {
