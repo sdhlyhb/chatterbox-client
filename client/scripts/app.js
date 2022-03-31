@@ -19,8 +19,11 @@ var App = {
     // Fetch initial batch of messages
     App.startSpinner();
     App.fetch(App.stopSpinner());
+
     $('.refresh-button').on('click', (e)=>{
-      App.fetch();
+      App.startSpinner();
+      App.fetch(App.startSpinner());
+      RoomsView.$select.val('showAll');
     });
 
     // TODO: Make sure the app loads data from the API
@@ -31,15 +34,21 @@ var App = {
     Parse.readAll((data) => {
       // examine the response from the server request:
       console.log(data);
+      Messages.messageClearUp();
+
       data.forEach((message) => {
         //push all messages to our data object
         Messages.addMessage(message);
         //console.log(Messages._data);
       });
-      MessagesView.render();
+      setTimeout(() => { MessagesView.render(); }, 500);
+
+      callback();
       // TODO: Use the data to update Messages and Rooms
       // and re-render the corresponding views.
     });
+
+
   },
 
   startSpinner: function() {

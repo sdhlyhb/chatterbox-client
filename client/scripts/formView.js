@@ -22,8 +22,9 @@ var FormView = {
     };
 
     //console.log('click!');
-    Parse.create(message, (data) => {
-      console.log('DATA:', data);
+    Parse.create(message, () => {
+      //clear storage aka messages
+      //render input message immediately to DOM
     });
 
     $('#message').val('');

@@ -25,10 +25,13 @@ var RoomsView = {
   renderRoom: function(roomname) {
     // TODO: Render out a single room.
     this.$select.append(`<option>${roomname}</option>`);
+
   },
 
   handleChange: function(event) {
     // TODO: Handle a user selecting a different room.
+
+    //render feed to only include messages in specific room
   },
 
   handleClick: function(event) {

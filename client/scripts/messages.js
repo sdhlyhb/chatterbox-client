@@ -24,6 +24,14 @@ var Messages = {
     messages.filter(function (message) {
       return message.roomname === roomname;
     });
+    if (roomname === 'show') {
+      return messages;
+    } else {
+      var result = _.filter(messages, function (message) {
+        return message['roomname'] === roomname;
+      });
+      return result;
+    }
   },
   filterMessageByUsername: function (username) {
     //get values in array
@@ -32,5 +40,11 @@ var Messages = {
     messages.filter(function (message) {
       return message.username === keyword;
     });
+  },
+
+  messageClearUp: function () {
+    this._data = {};
+    this.id = 0;
   }
+
 };
