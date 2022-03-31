@@ -15,6 +15,7 @@ var Friends = {
     if (!this._data[username]) {
       //set friend status to true
       this._data[username] = true;
+      //
       //otherwise
     } else {
       //delete this person as a friend

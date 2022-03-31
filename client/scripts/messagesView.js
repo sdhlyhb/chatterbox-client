@@ -31,9 +31,14 @@ var MessagesView = {
     // TODO: Render a single message.
     //create a username
     var username = message['username'];
-    
-    this.$chats.append(MessageView.render(message));
-
+    //if this person is not a friend
+    if (!Friends._data[username]) {
+      //render message
+      this.$chats.append(MessageView.render(message));
+    } else {
+      //this message is in the friends data obj, render
+      this.$chats.append(MessageView.renderFriend(message));
+    }
   },
 
   handleClick: function(event) {
@@ -42,7 +47,11 @@ var MessagesView = {
     //target username
     $('.username').on('click', function (event) {
       var username = event.target.innerText;
+      //we make this person a friend when clicked
       Friends.toggleStatus(username);
+
+      setTimeout(() => { MessagesView.render(); }, 500);
+      RoomsView.$select.val('showAll');
     });
 
   }
