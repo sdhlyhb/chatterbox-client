@@ -13,18 +13,25 @@ var MessagesView = {
 
   render: function(messages) {
     // TODO: Render _all_ the messages.
+    //clear the chat feed
     this.$chats.html('');
+    //grab input messages or default
     var messages = messages || Object.values(Messages._data);
+    //go through messages
     messages.forEach((message) => {
+      //call renderMessage(below) with message
       this.renderMessage(message);
     });
 
-    //this or MessagesView???
+    //call this function
     MessagesView.handleClick(event);
   },
 
   renderMessage: function(message) {
     // TODO: Render a single message.
+    //create a username
+    var username = message['username'];
+    
     this.$chats.append(MessageView.render(message));
 
   },

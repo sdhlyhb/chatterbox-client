@@ -55,6 +55,7 @@ var RoomsView = {
       var roomname = prompt('Enter Room Name');
       //if a roomname is given
       if (roomname.length > 0) {
+        //add roomname to option list
         Rooms.add(roomname);
       } else {
         //if no input, shows default room

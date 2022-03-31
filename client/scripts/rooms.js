@@ -14,5 +14,7 @@ var Rooms = {
       this._data[roomname] = true;
       RoomsView.renderRoom(roomname);
     }
-  }
+  },
+
+  
 };

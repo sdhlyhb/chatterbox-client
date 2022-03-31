@@ -15,6 +15,7 @@ var MessageView = {
         <div class="roomname"><%- roomname %>
       </div>`
   ),
+  
   //creating a friend message to highlight upon click
   renderFriend: _.template(
     `<div class="chat">
