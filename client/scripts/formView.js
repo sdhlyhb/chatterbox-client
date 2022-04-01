@@ -8,6 +8,8 @@ var FormView = {
 
   initialize: function() {
     FormView.$form.on('submit', FormView.handleSubmit);
+    //render messages to the page
+    setTimeout(() => { MessagesView.render(); }, 100);
   },
 
   handleSubmit: function(event) {
@@ -21,11 +23,10 @@ var FormView = {
       'roomname': $('#rooms select').val()
     };
 
-    //console.log('click!');
-    Parse.create(message, () => {
-      //clear storage aka messages
-      //render input message immediately to DOM
-    });
+    //POST REQUEST w/message data
+    Parse.create(message, () => {});
+    App.startSpinner();
+    App.fetch(App.stopSpinner());
 
     $('#message').val('');
   },

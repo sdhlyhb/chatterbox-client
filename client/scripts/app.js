@@ -6,6 +6,7 @@ var App = {
 
   $spinner: $('.spinner img'),
 
+
   username: 'anonymous',
 
   initialize: function() {
@@ -22,7 +23,8 @@ var App = {
 
     $('.refresh-button').on('click', (e)=>{
       App.startSpinner();
-      App.fetch(App.startSpinner());
+      App.fetch(App.stopSpinner());
+      //every time clicked, default back to 'showAll'
       RoomsView.$select.val('showAll');
     });
 
@@ -34,18 +36,26 @@ var App = {
     Parse.readAll((data) => {
       // examine the response from the server request:
       console.log(data);
+      // TODO: Use the data to update Messages and Rooms
+      // and re-render the corresponding views.
+
+      //otherwise 100 additional messages will show up each time
       Messages.messageClearUp();
 
       data.forEach((message) => {
         //push all messages to our data object
         Messages.addMessage(message);
-        //console.log(Messages._data);
       });
-      setTimeout(() => { MessagesView.render(); }, 500);
+
+      //alias the current room's value
+      var currentRoom = $('#rooms select').val();
+      //alias that room's messages to render
+      var messagesToRender = Messages.filterMessageByRoomName(currentRoom);
+
+      //render the messages above, basically immediately
+      setTimeout(() => { MessagesView.render(messagesToRender); }, 10);
 
       callback();
-      // TODO: Use the data to update Messages and Rooms
-      // and re-render the corresponding views.
     });
 
 

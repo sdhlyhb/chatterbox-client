@@ -35,7 +35,7 @@ var RoomsView = {
     //clear chat html
     MessagesView.$chats.html('');
     //render room's messages to chats
-    MessagesView.render(fiteredMessages);
+    MessagesView.render(filteredMessages);
   },
 
 
