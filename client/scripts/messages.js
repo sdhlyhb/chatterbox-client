@@ -38,9 +38,10 @@ var Messages = {
       return messages;
     } else {
       //otherwise filter messages by roomname
-      messages.filter(function (message) {
+      var result = _.filter(messages, function (message) {
         return message['roomname'] === roomname;
       });
+      return result;
     }
   },
 
@@ -48,9 +49,10 @@ var Messages = {
     //alias messages in object
     var messages = Object.values(this._data);
     //filter messages by username
-    messages.filter(function (message) {
+    var result = _.filter(messages, function (message) {
       return message['username'] === username;
     });
+    return result;
   },
 
   filterMessageByFriends: function () {
@@ -59,9 +61,10 @@ var Messages = {
     //alias friends
     var friendsList = Object.values(Friends._data);
     //filter messages by friendship
-    messages.filter(function (message) {
+    var result = _.filter(messages, function (message) {
       return Friends._data[message['username']];
     });
+    return result;
   },
 
   messageClearUp: function () {

@@ -12,6 +12,7 @@ var RoomsView = {
     this.render(); //shows default room
     this.handleClick(event);
     this.handleChange(event);
+    MessagesView.handleClick(event);
   },
 
   render: function() {
