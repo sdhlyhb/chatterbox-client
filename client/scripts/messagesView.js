@@ -60,7 +60,7 @@ var MessagesView = {
 
   handleClick2: function (event) {
     $('.friends-room').on('click', function (event) {
-      //MessageView.$chats.html('');
+
       var filteredFriends = Messages.filterMessageByFriends();
       MessagesView.render(filteredFriends);
     });
