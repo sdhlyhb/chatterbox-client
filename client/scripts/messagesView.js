@@ -9,6 +9,7 @@ var MessagesView = {
     // TODO: Perform any work which needs to be done
     // when this view loads.
     this.handleClick();
+    this.handleClick2();
   },
 
   render: function(messages) {
@@ -32,7 +33,7 @@ var MessagesView = {
     //create a username
     var username = message['username'];
     //if this person is not a friend
-    if (!Friends._data[username]) {
+    if (!Friends.checkFriendship(username)) {
       //render message
       this.$chats.append(MessageView.render(message));
     } else {
@@ -51,9 +52,18 @@ var MessagesView = {
       Friends.toggleStatus(username);
 
       setTimeout(() => { MessagesView.render(); }, 500);
+
       RoomsView.$select.val('showAll');
     });
 
+  },
+
+  handleClick2: function (event) {
+    $('.friends-room').on('click', function (event) {
+      //MessageView.$chats.html('');
+      var filteredFriends = Messages.filterMessageByFriends();
+      MessagesView.render(filteredFriends);
+    });
   }
 
 };
