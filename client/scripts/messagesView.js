@@ -77,6 +77,13 @@ var MessagesView = {
       MessagesView.renderFriendsMessages(friendsTwtList);
     });
 
+    $('.lobby-btn').on('click', function (event) {
+      $('#chatsInLobby').html('');
+      var lobbyTwtList = Messages.filterMessageByRoomName('lobby');
+      MessagesView.render(lobbyTwtList);
+    });
+
+
 
   },
 
@@ -89,7 +96,7 @@ var MessagesView = {
 
       setTimeout(() => { MessagesView.renderFriendsMessages(friendsTwtList); }, 500);
 
-      RoomsView.$select.val('FriendsRoom');
+
     });
   }
 
