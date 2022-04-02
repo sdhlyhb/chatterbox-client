@@ -30,14 +30,72 @@
         <select></select>
         <button>Add Room</button>
       </div>
-      <button class="friends-room">Friends Room</button>
+
+      <!-- refresh post btn -->
       <button class="refresh-button">Refresh</button>
+
+
       <form action="#" id="send" method="post">
         <input type="text" name="message" id="message"/>
         <input type="submit" name="submit" class="submit"/>
       </form>
     </div>
-    <div id="chats"></div>
+    <!-- tabs of rooms -->
+    <div class ="container">
+
+
+    </div>
+    <div class="tab">
+      <button class="friendsTwt-btn" onclick="openRoom(event, 'friendsTweets')">Tweets by friends</button>
+      <button class="tablinks" onclick="openRoom(event, 'showAll')" id="defaultOpen">Current Room</button>
+      <button class="tablinks" onclick="openRoom(event, 'likedTwts')">Liked Tweets</button>
+      <button class="tablinks" onclick="openRoom(event, 'rm')">rm</button>
+    </div>
+
+    <div id="showAll" class="tabcontent">
+      <h3>currentRoom</h3>
+      <div id="chats"></div>
+    </div>
+
+    <div id="friendsTweets" class="tabcontent">
+      <h3>Tweets by friends</h3>
+      <div id="chatsByFriends"></div>
+    </div>
+
+    <div id="likedTwts" class="tabcontent">
+      <h3>Liked Tweets</h3>
+      <p>To display liked tweets</p>
+    </div>
+
+    <div id="rm" class="tabcontent">
+      <h3>rm</h3>
+      <p>another room</p>
+    </div>
+
+
+    <!-- function to display content in tabs -->
+    <script>
+      function openRoom(evt, roomname) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+          tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+          tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(roomname).style.display = "block";
+        evt.currentTarget.className += " active";
+      }
+
+      // Get the element with id="defaultOpen" and click on it
+      document.getElementById("defaultOpen").click();
+      </script>
+
+
+
+
     <script src="client/env/config.js"></script>
     <script src="client/scripts/parse.js"></script>
     <script src="client/scripts/rooms.js"></script>

@@ -25,6 +25,6 @@ var Friends = {
   },
 
   checkFriendship: function (friend) {
-    return this._data[friend];
+    return this._data[friend] === true;
   }
 };

@@ -10,6 +10,7 @@ var MessagesView = {
     // when this view loads.
     this.handleClick();
     this.handleClick2();
+    this.handleClick3();
   },
 
   render: function(messages) {
@@ -42,6 +43,17 @@ var MessagesView = {
     }
   },
 
+  //render friends tweets in friends tweet tab
+  renderFriendsMessages: function(messages) {
+    // Render _all_ the messages by friends and display in tweets by friends tab.
+
+    messages.forEach((message) => {
+      $('#chatsByFriends').append(MessageView.renderFriend(message));
+    });
+    MessagesView.handleClick(event);
+
+  },
+
   handleClick: function(event) {
     // TODO: handle a user clicking on a message
     // (this should add the sender to the user's friend list).
@@ -59,10 +71,25 @@ var MessagesView = {
   },
 
   handleClick2: function (event) {
-    $('.friends-room').on('click', function (event) {
+    $('.friendsTwt-btn').on('click', function (event) {
+      $('#chatsByFriends').html('');
+      var friendsTwtList = Messages.filterMessageByFriends();
+      MessagesView.renderFriendsMessages(friendsTwtList);
+    });
 
-      var filteredFriends = Messages.filterMessageByFriends();
-      MessagesView.render(filteredFriends);
+
+  },
+
+  handleClick3: function(event) {
+    $('.username').on('click', function (event) {
+      var username = event.target.innerText;
+      //we make this person a friend when clicked
+      Friends.toggleStatus(username);
+      var friendsTwtList = Messages.filterMessageByFriends();
+
+      setTimeout(() => { MessagesView.renderFriendsMessages(friendsTwtList); }, 500);
+
+      RoomsView.$select.val('FriendsRoom');
     });
   }
 
