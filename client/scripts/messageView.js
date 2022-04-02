@@ -13,9 +13,13 @@ var MessageView = {
         <div class="text"><%- text %>
         </div>
         <div class="roomname"><%- roomname %>
-      </div>`
+      </div>
+      <div class="tweet-icons"><i class="far fa-heart like"></i></div>
+
+      `
+
   ),
-  
+
   //creating a friend message to highlight upon click
   renderFriend: _.template(
     `<div class="chat">
@@ -24,6 +28,9 @@ var MessageView = {
         <div class="text"><mark><%- text %><mark>
         </div>
         <div class="roomname"><mark><%- roomname %><mark>
-      </div>`
+      </div>
+      <div class="tweet-icons"><i class="far fa-heart like"></i></div>
+
+      `
   )
 };

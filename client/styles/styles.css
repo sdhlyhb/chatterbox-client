@@ -179,3 +179,16 @@ form input[type=text] {
     border: 1px solid #ccc;
     border-top: none;
   }
+
+
+  .tweet-icons {
+    text-align:center;
+
+
+
+
+  }
+   i:hover {
+    color: #FF7171;
+    cursor: pointer;
+  }
