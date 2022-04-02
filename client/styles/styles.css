@@ -1,16 +1,16 @@
 body {
-    background: grey;
-    /* background-image: url('https://png.pngtree.com/thumb_back/fw800/back_pic/02/64/75/575785daf29ad0d.jpg'); */
+    background: #B9BBDF;
+    background-image: url('https://png.pngtree.com/thumb_back/fw800/back_pic/02/64/75/575785daf29ad0d.jpg');
     text-align: center;
     padding: 0 25px;
-    font-family: arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 #main, #chats {
     width: 500px;
     margin: auto;
     text-align: left;
-    background: white;
+    background: #93B5C6;
     padding: 50px 60px;
     border: solid #ddd;
     border-width: 0 1px 1px 1px;
@@ -21,7 +21,27 @@ body {
     font-size: 35px;
     margin-bottom: 5px;
     padding: 5px;
+    font-family: 'Lobster', cursive;
+    text-align: center;
+    color: #126E82;
 }
+h1 {
+    text-shadow:     0 1px 0 hsl(174,5%,80%),
+                       0 2px 0 hsl(174,5%,75%),
+                       0 3px 0 hsl(174,5%,70%),
+                       0 4px 0 hsl(174,5%,66%),
+                       0 5px 0 hsl(174,5%,64%),
+                       0 6px 0 hsl(174,5%,62%),
+                       0 7px 0 hsl(174,5%,61%),
+                       0 8px 0 hsl(174,5%,60%),
+
+                       0 0 5px rgba(0,0,0,.05),
+                      0 1px 3px rgba(0,0,0,.2),
+                      0 3px 5px rgba(0,0,0,.2),
+                     0 5px 10px rgba(0,0,0,.2),
+                    0 10px 10px rgba(0,0,0,.2),
+                    0 20px 20px rgba(0,0,0,.3);
+  }
 
 #main h1 span {
     font-style:italic;
@@ -63,11 +83,31 @@ form input[type=text] {
 .chat {
     padding: 5px;
     margin-bottom: 5px;
-    background-color: #eee;
+    background-color: #DDE7F2;
 }
 
 .chat .username {
     font-weight: 800;
+    padding-left: 1rem;
+    padding-top: 1rem;
+    font-size: large;
+}
+
+.chat .text {
+    text-align: center;
+
+    padding-top: 1rem;
+
+}
+
+.chat .roomname {
+    font-size: small;
+    font-style: italic;
+    text-align: right;
+    padding-right: 1rem;
+    padding-bottom: 1rem;
+
+
 }
 
 .chat:hover {
@@ -96,7 +136,7 @@ form input[type=text] {
     width: 500px;
     margin: auto;
     text-align: left;
-    background: lightblue;
+    background: #FFBCBC;
     padding: 50px 60px;
     border: solid #ddd;
     border-width: 0 1px 1px 1px;
@@ -116,7 +156,7 @@ form input[type=text] {
     width: 500px;
     margin: auto;
     text-align: left;
-    background: lightpink;
+    background: #FFE3E3;
     padding: 50px 60px;
     border: solid #ddd;
     border-width: 0 1px 1px 1px;
