@@ -8,9 +8,10 @@ var MessagesView = {
   initialize: function() {
     // TODO: Perform any work which needs to be done
     // when this view loads.
-    this.handleClick();
-    this.handleClick2();
-    this.handleClick3();
+    this.handleClick(event);
+    this.handleClick2(event);
+    this.handleClick3(event);
+    this.handleClick4(event);
   },
 
   render: function(messages) {
@@ -43,16 +44,45 @@ var MessagesView = {
     }
   },
 
+  renderMessageInLobbyTab: function(message) {
+    // TODO: Render a single message.
+    //create a username
+    var username = message['username'];
+    //if this person is not a friend
+    if (!Friends.checkFriendship(username)) {
+      //render message
+      $('#chatsInLobby').append(MessageView.render(message));
+    } else {
+      //this message is in the friends data obj, render
+      $('#chatsInLobby').append(MessageView.renderFriend(message));
+    }
+  },
+
   //render friends tweets in friends tweet tab
   renderFriendsMessages: function(messages) {
     // Render _all_ the messages by friends and display in tweets by friends tab.
+    $('#chatsByFriends').html('');
 
     messages.forEach((message) => {
       $('#chatsByFriends').append(MessageView.renderFriend(message));
+
     });
-    MessagesView.handleClick(event);
+    MessagesView.handleClickInFriendsTabs(event);
 
   },
+
+  //render lobby msg in lobby tab
+  renderLobbyMessages: function() {
+    // Render _all_ the messages by friends and display in tweets by friends tab.
+    $('#chatsInLobby').html('');
+    var lobbyMessages = Messages.filterMessageByRoomName('lobby');
+    lobbyMessages.forEach((message) => {
+      MessagesView.renderMessageInLobbyTab(message);
+    });
+    MessagesView.handleClickInLobbyTabs(event);
+
+  },
+
 
   handleClick: function(event) {
     // TODO: handle a user clicking on a message
@@ -65,39 +95,62 @@ var MessagesView = {
 
       setTimeout(() => { MessagesView.render(); }, 500);
 
-      RoomsView.$select.val('showAll');
+      //RoomsView.$select.val('showAll');
     });
 
   },
 
   handleClick2: function (event) {
     $('.friendsTwt-btn').on('click', function (event) {
-      $('#chatsByFriends').html('');
+
       var friendsTwtList = Messages.filterMessageByFriends();
       MessagesView.renderFriendsMessages(friendsTwtList);
+
     });
-
-    $('.lobby-btn').on('click', function (event) {
-      $('#chatsInLobby').html('');
-      var lobbyTwtList = Messages.filterMessageByRoomName('lobby');
-      MessagesView.render(lobbyTwtList);
-    });
-
-
 
   },
 
   handleClick3: function(event) {
+    $('.lobby-btn').on('click', function (event) {
+      RoomsView.$select.val('lobby');
+      MessagesView.renderLobbyMessages();
+
+    });
+
+  },
+
+  handleClick4: function(event) {
+    $('.currentRm-btn').on('click', function (event) {
+      RoomsView.displayCurrentRoom();
+      //MessagesView.handleClick;
+
+    });
+
+  },
+
+  handleClickInFriendsTabs: function(event) {
     $('.username').on('click', function (event) {
       var username = event.target.innerText;
       //we make this person a friend when clicked
       Friends.toggleStatus(username);
       var friendsTwtList = Messages.filterMessageByFriends();
 
-      setTimeout(() => { MessagesView.renderFriendsMessages(friendsTwtList); }, 500);
+      setTimeout(() => { MessagesView.renderFriendsMessages(friendsTwtList); }, 50);
+
+
+    });
+  },
+
+  handleClickInLobbyTabs: function(event) {
+    $('.username').on('click', function (event) {
+      var username = event.target.innerText;
+      //we make this person a friend when clicked
+      Friends.toggleStatus(username);
+      var friendsTwtList = Messages.filterMessageByFriends();
+
+      setTimeout(() => { MessagesView.renderLobbyMessages(friendsTwtList); }, 50);
 
 
     });
   }
-
 };

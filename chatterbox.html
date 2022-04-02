@@ -47,7 +47,7 @@
     </div>
     <div class="tab">
       <button class="friendsTwt-btn tablinks" onclick="openRoom(event, 'friendsTweets')">Tweets by friends</button>
-      <button class="tablinks" onclick="openRoom(event, 'showAll')" id="defaultOpen">Current Room</button>
+      <button class="currentRm-btn tablinks" onclick="openRoom(event, 'showAll')" id="defaultOpen">Current Room</button>
 
       <button class="lobby-btn tablinks"  onclick="openRoom(event, 'lobby')">lobby</button>
       <button class="tablinks" onclick="openRoom(event, 'likedTwts')">Liked Tweets</button>
@@ -66,7 +66,7 @@
 
     <div id="likedTwts" class="tabcontent">
       <h3>Liked Tweets</h3>
-      <p>To display liked tweets</p>
+      <div id="chatsLiked"></div>
     </div>
 
     <div id="lobby" class="tabcontent">
