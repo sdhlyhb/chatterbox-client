@@ -26,6 +26,7 @@ var App = {
       App.fetch(App.stopSpinner());
       //every time clicked, default back to 'showAll'
       RoomsView.$select.val('showAll');
+      document.getElementById('defaultOpen').click(); //this will open the current room tab and show a default showAll display
     });
 
     // TODO: Make sure the app loads data from the API
