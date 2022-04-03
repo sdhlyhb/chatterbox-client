@@ -14,7 +14,10 @@ var MessageView = {
         </div>
         <div class="roomname"><%- roomname %>
       </div>
-      <div class="tweet-icons"><i class="far fa-heart like"></i></div>
+
+      <div class="tweet-icons"><span class = "hide"><%- message_id %></span><i class="far fa-heart like"></i></div>
+
+
 
       `
 
@@ -29,7 +32,8 @@ var MessageView = {
         </div>
         <div class="roomname"><mark><%- roomname %><mark>
       </div>
-      <div class="tweet-icons"><i class="far fa-heart like"></i></div>
+
+      <div class="tweet-icons"><span class = "hide"><%- message_id %></span><i class="far fa-heart like"></i></div>
 
       `
   )

@@ -12,6 +12,7 @@ var MessagesView = {
     this.handleClick2(event);
     this.handleClick3(event);
     this.handleClick4(event);
+    this.handleClickHearted(event);
   },
 
   render: function(messages) {
@@ -28,6 +29,7 @@ var MessagesView = {
 
     //call this function
     MessagesView.handleClick(event);
+    MessagesView.handleClickHearted(event);
   },
 
   renderMessage: function(message) {
@@ -68,6 +70,7 @@ var MessagesView = {
 
     });
     MessagesView.handleClickInFriendsTabs(event);
+    MessagesView.handleClickHearted(event);
 
   },
 
@@ -80,6 +83,7 @@ var MessagesView = {
       MessagesView.renderMessageInLobbyTab(message);
     });
     MessagesView.handleClickInLobbyTabs(event);
+    MessagesView.handleClickHearted(event);
 
   },
 
@@ -152,5 +156,25 @@ var MessagesView = {
 
 
     });
+  },
+
+  handleClickHearted: function(event) {
+    $('.tweet-icons').on('click', function(event) {
+      var messageId = $(this).find('span').text();
+      Likes.toggleStatus(messageId);
+      if (Likes.checkLikes(messageId)) {
+        $(this).find('.like').css('color', 'red');
+      } else {
+        $(this).find('.like').css('color', 'black');
+
+      }
+
+
+    });
   }
+
+
+
+
+
 };
